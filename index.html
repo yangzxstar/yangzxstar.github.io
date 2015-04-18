@@ -1,37 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Yangzxstar.GitHub.io : A brazen two-column theme for Jekyll.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Yangzxstar.GitHub.io</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/yangzxstar">View on GitHub</a>
+
+          <h1 id="project_title">Yangzxstar.GitHub.io</h1>
+          <h2 id="project_tagline">A brazen two-column theme for Jekyll.</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="hyde" class="anchor" href="#hyde" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hyde</h1>
+
+<p>Hyde is a brazen two-column <a href="http://jekyllrb.com">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. It's based on <a href="http://getpoole.com">Poole</a>, the Jekyll butler.</p>
+
+<p><img src="https://f.cloud.github.com/assets/98681/1831228/42af6c6a-7384-11e3-98fb-e0b923ee0468.png" alt="Hyde screenshot"></p>
+
+<h2>
+<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contents</h2>
+
+<ul>
+<li><a href="#usage">Usage</a></li>
+<li>
+<a href="#options">Options</a>
+
+<ul>
+<li><a href="#sidebar-menu">Sidebar menu</a></li>
+<li><a href="#sticky-sidebar-content">Sticky sidebar content</a></li>
+<li><a href="#themes">Themes</a></li>
+<li><a href="#reverse-layout">Reverse layout</a></li>
+</ul>
+</li>
+<li><a href="#development">Development</a></li>
+<li><a href="#author">Author</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Hyde is a theme built on top of <a href="https://github.com/poole/poole">Poole</a>, which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See <a href="https://github.com/poole/poole#usage">the Poole usage guidelines</a> for how to install and use Jekyll.</p>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<p>Hyde includes some customizable options, typically applied via classes on the <code>&lt;body&gt;</code> element.</p>
+
+<h3>
+<a id="sidebar-menu" class="anchor" href="#sidebar-menu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sidebar menu</h3>
+
+<p>Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's <a href="http://jekyllrb.com/docs/frontmatter/">front-matter</a>.</p>
+
+<pre><code>---
+layout: page
+title: About
 ---
-layout: default
-title: Home
----
+</code></pre>
 
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+<p><strong>Why require a specific layout?</strong> Jekyll will return <em>all</em> pages, including the <code>atom.xml</code>, and with an alphabetical sort order. To ensure the first link is <em>Home</em>, we exclude the <code>index.html</code> page from this list by specifying the <code>page</code> layout.</p>
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
+<h3>
+<a id="sticky-sidebar-content" class="anchor" href="#sticky-sidebar-content" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sticky sidebar content</h3>
 
-    {{ post.content }}
-  </div>
-  {% endfor %}
-</div>
+<p>By default Hyde ships with a sidebar that affixes it's content to the bottom of the sidebar. You can optionally disable this by removing the <code>.sidebar-sticky</code> class from the sidebar's <code>.container</code>. Sidebar content will then normally flow from top to bottom.</p>
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div>
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- Default sidebar --&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>sidebar<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>container sidebar-sticky<span class="pl-pds">"</span></span>&gt;
+    ...
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+
+<span class="pl-c">&lt;!-- Modified sidebar --&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>sidebar<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>container<span class="pl-pds">"</span></span>&gt;
+    ...
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<h3>
+<a id="themes" class="anchor" href="#themes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Themes</h3>
+
+<p>Hyde ships with eight optional themes based on the <a href="https://github.com/chriskempson/base16">base16 color scheme</a>. Apply a theme to change the color scheme (mostly applies to sidebar and links).</p>
+
+<p><img src="https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png" alt="Hyde in red"></p>
+
+<p>There are eight themes available at this time.</p>
+
+<p><img src="https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png" alt="Hyde theme classes"></p>
+
+<p>To use a theme, add anyone of the available theme classes to the <code>&lt;body&gt;</code> element in the <code>default.html</code> layout, like so:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">body</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>theme-base-08<span class="pl-pds">"</span></span>&gt;
+  ...
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<p>To create your own theme, look to the Themes section of <a href="https://github.com/poole/hyde/blob/master/public/css/hyde.css">included CSS file</a>. Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.</p>
+
+<h3>
+<a id="reverse-layout" class="anchor" href="#reverse-layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reverse layout</h3>
+
+<p><img src="https://f.cloud.github.com/assets/98681/1831230/42b0d3ac-7384-11e3-8d54-2065afd03f9e.png" alt="Hyde with reverse layout"></p>
+
+<p>Hyde's page orientation can be reversed with a single class.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">body</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>layout-reverse<span class="pl-pds">"</span></span>&gt;
+  ...
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<p>Hyde has two branches, but only one is used for active development.</p>
+
+<ul>
+<li>
+<code>master</code> for development.  <strong>All pull requests should be to submitted against <code>master</code>.</strong>
+</li>
+<li>
+<code>gh-pages</code> for our hosted site, which includes our analytics tracking code. <strong>Please avoid using this branch.</strong>
+</li>
+</ul>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p><strong>Mark Otto</strong></p>
+
+<ul>
+<li><a href="https://github.com/mdo">https://github.com/mdo</a></li>
+<li><a href="https://twitter.com/mdo">https://twitter.com/mdo</a></li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Open sourced under the <a href="LICENSE.md">MIT license</a>.</p>
+
+<p>&lt;3</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
